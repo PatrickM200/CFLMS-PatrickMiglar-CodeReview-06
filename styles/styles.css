@@ -1,0 +1,29 @@
+.jumbotron {
+  background-image: url("../img/banner11.png");
+  background-repeat: no-repeat;
+  margin: 0;
+  border-radius: 0;
+  background-position: center;
+  background-size: contain;
+  background-color: rgba(10, 10, 10, 0.5);
+}
+
+.bannerbg {
+  background-color: rgba(10, 10, 10, 0.5);
+  border-radius: 25px;
+  padding-left: 100px;
+}
+
+.navbar {
+  margin-top: 0;
+}
+
+.bannerwrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+/*# sourceMappingURL=styles.css.map */
