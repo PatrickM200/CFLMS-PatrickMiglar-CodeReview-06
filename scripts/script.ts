@@ -249,7 +249,7 @@ list.forEach((item) => {
   }
   let text = `<div class="col-12 bg-dark text-light m-2 h3 text-center">${item}</div>`;
   filteredList.forEach((filteredListItem) => {
-      text += filteredListItem.render();
-  })
+    text += filteredListItem.render();
+  });
   document.querySelector("main").innerHTML += text;
 });
