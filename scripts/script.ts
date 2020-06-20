@@ -26,20 +26,20 @@ class locations implements destinations {
   render() {
     return `
         
-		<div class="media col-lg-3 col-md-6 col-sm-12">
-  		<div class="media-left">
+		<div class="bg-secondary col-lg-3 col-md-6 col-sm-12">
+  		<div class="content">
   		<hr>
     	<a href="#">
-      	<img class="media-object d-none d-md-block" src="${this.image}">
+      	<img class="d-none d-md-block" src="${this.image}">
     	</a>
     	<hr>
   		</div>
-  		<div class="media-body col-lg-12 col-md-1 col-sm-12 media-text">
-    	<h4 class="media-heading media-text">${this.name}</h4>
-    	<p><b>City:</b> ${this.city}</p>
-    	<p><b>ZIP-Code:</b> ${this.zipcode}</p>
-    	<p><b>Address:</b> <br>${this.address}</p>
-    	<hr>
+  		<div class="contetText col-lg-12 col-md-1 col-sm-12">
+        <h4 class="contentTitle">${this.name}</h4>
+        <p><b>City:</b> ${this.city}</p>
+        <p><b>ZIP-Code:</b> ${this.zipcode}</p>
+        <p><b>Address:</b> ${this.address}</p>
+    	  <hr>
   		</div>
 		</div>
 		`;
@@ -67,24 +67,24 @@ class restaurants extends locations {
   }
   render() {
     return `
-		<div class="media col-lg-3 col-md-6 col-sm-12">
-  		<div class="media-left">
+		<div class="bg-secondary col-lg-3 col-md-6 col-sm-12">
+  		<div class="content">
   		<hr>
     	<a href="#">
-      	<img class="media-object d-none d-md-block" src="${this.image}">
+      	<img class="d-none d-md-block" src="${this.image}">
     	</a>
     	<hr>
   		</div>
-  		<div class="media-body col-lg-12 col-md-1 col-sm-12 media-text">
-    	<h4 class="media-heading media-text">${this.name}</h4>
-    	<p><b>City:</b> ${this.city}</p>
-    	<p><b>ZIP-Code:</b> ${this.zipcode}</p>
-        <p><b>Address:</b> <br>${this.address}</p>
+  		<div class="contetText col-lg-12 col-md-1 col-sm-12">
+        <h4 class="contentTitle">${this.name}</h4>
+        <p><b>City:</b> ${this.city}</p>
+        <p><b>ZIP-Code:</b> ${this.zipcode}</p>
+        <p><b>Address:</b> ${this.address}</p>
         <hr>
-        <p><b>Address:</b> <br>${this.telefon}</p>
-        <p><b>Address:</b> <br>${this.art}</p>
-        <p><b>Address:</b> <br>${this.website}</p>
-    	<hr>
+        <p><b>Time:</b> ${this.telefon}</p>
+        <p><b>Date:</b> ${this.art}</p>
+        <p><b>Date:</b> ${this.website}</p>
+    	  <hr>
   		</div>
 		</div>
 		`;
@@ -109,23 +109,23 @@ class events extends locations {
   }
   render() {
     return `
-		<div class="media col-lg-3 col-md-6 col-sm-12">
-  		<div class="media-left">
+		<div class="bg-secondary col-lg-3 col-md-6 col-sm-12">
+  		<div class="content">
   		<hr>
     	<a href="#">
-      	<img class="media-object d-none d-md-block" src="${this.image}">
+      	<img class="d-none d-md-block" src="${this.image}">
     	</a>
     	<hr>
   		</div>
-  		<div class="media-body col-lg-12 col-md-1 col-sm-12 media-text">
-    	<h4 class="media-heading media-text">${this.name}</h4>
-    	<p><b>City:</b> ${this.city}</p>
-    	<p><b>ZIP-Code:</b> ${this.zipcode}</p>
-        <p><b>Address:</b> <br>${this.address}</p>
+  		<div class="contetText col-lg-12 col-md-1 col-sm-12">
+        <h4 class="contentTitle">${this.name}</h4>
+        <p><b>City:</b> ${this.city}</p>
+        <p><b>ZIP-Code:</b> ${this.zipcode}</p>
+        <p><b>Address:</b> ${this.address}</p>
         <hr>
-        <p><b>Time:</b> <br>${this.time}</p>
-        <p><b>Date:</b> <br>${this.date}</p>
-    	<hr>
+        <p><b>Time:</b> ${this.time}</p>
+        <p><b>Date:</b> ${this.date}</p>
+    	  <hr>
   		</div>
 		</div>
 		`;
@@ -133,15 +133,21 @@ class events extends locations {
 }
 //-----------DATA INPUT------------//
 const data: destinations[] = [
-  new locations("Dome Disco", "Wien", 1010, "Domstraße 16", "image"),
+  new locations("Dome Disco", "Wien", 1010, "Domstraße 16", "/img/loca1.jpg"),
   new locations(
     "Nightlife",
     "Wiener Neustadt",
     2700,
     "Granzer Straße 10",
-    "image"
+    "/img/loca2.jpg"
   ),
-  new locations("Metalbar", "Bromberg", 2540, "Wiener Straße 2", "image"),
+  new locations(
+    "Metalbar",
+    "Bromberg",
+    2540,
+    "Wiener Straße 2",
+    "/img/loca3.jpg"
+  ),
   new locations("Brotherhood", "Rust", 2310, "Rust-Weg 12", "image"),
 
   new restaurants(
@@ -149,7 +155,7 @@ const data: destinations[] = [
     "Wien",
     1010,
     "Dome Weg 2",
-    "image",
+    "/img/rest4.jpg",
     "+43 645 56 56",
     "Wirt",
     "www.wirt1.at"
@@ -159,7 +165,7 @@ const data: destinations[] = [
     "Wiener Neustadt",
     2900,
     "Grazerstraße 5",
-    "image",
+    "/img/rest2.png",
     "+43 235 23 34",
     "Chinese",
     "www.wirt2.at"
@@ -169,7 +175,7 @@ const data: destinations[] = [
     "Bromberg",
     2700,
     "Wiener Weg 6",
-    "image",
+    "/img/rest3.jpg",
     "+43 646 45 45",
     "Wirt",
     "www.wirt3.at"
@@ -179,7 +185,7 @@ const data: destinations[] = [
     "Wiener Neustadt",
     2350,
     "Wiener Straße 12",
-    "image",
+    "/img/rest4.jpg",
     "+43 34 23 64",
     "Kaffeehaus",
     "www.wirt4.at"
@@ -190,7 +196,7 @@ const data: destinations[] = [
     "Österreich",
     2800,
     "Burgenland 1",
-    "image",
+    "/img/event1.jpg",
     "10:00:00",
     "28.09.2021"
   ),
@@ -199,7 +205,7 @@ const data: destinations[] = [
     "Deutschland",
     23562,
     "Kempten 2",
-    "image",
+    "/img/event2.jpg",
     "09:00:00",
     "23.10.2021"
   ),
@@ -208,7 +214,7 @@ const data: destinations[] = [
     "Deutschland",
     28141,
     "Berlin 3",
-    "image",
+    "/img/event3.jpg",
     "08:00:00",
     "03.05.2021"
   ),
@@ -217,7 +223,7 @@ const data: destinations[] = [
     "Ungarn",
     29811,
     "Sopron 4",
-    "image",
+    "/img/event4.jpg",
     "17:00:00",
     "06.06.2021"
   ),
@@ -247,7 +253,7 @@ list.forEach((item) => {
   } else {
     filteredList = data.filter(filterEven);
   }
-  let text = `<div class="col-12 bg-dark text-light m-2 h3 text-center">${item}</div>`;
+  let text = `<div class="mainTitle col-12 bg-dark text-light m-2 h3 text-center">${item}</div>`;
   filteredList.forEach((filteredListItem) => {
     text += filteredListItem.render();
   });
