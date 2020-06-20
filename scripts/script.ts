@@ -133,7 +133,13 @@ class events extends locations {
 }
 //-----------DATA INPUT------------//
 const data: destinations[] = [
-  new locations("Dome Disco", "Wien", 1010, "Domstraße 16", "/img/loca1.jpg"),
+  new locations(
+    "Dome Disco",
+    "Wien im Zentrum",
+    1010,
+    "Domstraße 16",
+    "/img/loca1.jpg"
+  ),
   new locations(
     "Nightlife",
     "Wiener Neustadt",
@@ -148,7 +154,13 @@ const data: destinations[] = [
     "Wiener Straße 2",
     "/img/loca3.jpg"
   ),
-  new locations("Brotherhood", "Rust", 2310, "Rust-Weg 12", "image"),
+  new locations(
+    "Brotherhood",
+    "Rust am See",
+    2310,
+    "der-lange-Weg 12",
+    "/img/loca4.jpg"
+  ),
 
   new restaurants(
     "Dome Wirt",
@@ -246,9 +258,9 @@ let filterEven = (obj: destinations) => {
 const list = ["Locations", "Restaurants", "Events"];
 list.forEach((item) => {
   let filteredList: destinations[];
-  if (item === "Location") {
+  if (item === "Locations") {
     filteredList = data.filter(filterLoca);
-  } else if (item === "Restaurantes") {
+  } else if (item === "Restaurants") {
     filteredList = data.filter(filterRest);
   } else {
     filteredList = data.filter(filterEven);

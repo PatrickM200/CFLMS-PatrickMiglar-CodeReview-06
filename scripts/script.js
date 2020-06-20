@@ -54,10 +54,10 @@ var events = /** @class */ (function (_super) {
 }(locations));
 //-----------DATA INPUT------------//
 var data = [
-    new locations("Dome Disco", "Wien", 1010, "Domstraße 16", "/img/loca1.jpg"),
+    new locations("Dome Disco", "Wien im Zentrum", 1010, "Domstraße 16", "/img/loca1.jpg"),
     new locations("Nightlife", "Wiener Neustadt", 2700, "Granzer Straße 10", "/img/loca2.jpg"),
     new locations("Metalbar", "Bromberg", 2540, "Wiener Straße 2", "/img/loca3.jpg"),
-    new locations("Brotherhood", "Rust", 2310, "Rust-Weg 12", "image"),
+    new locations("Brotherhood", "Rust am See", 2310, "der-lange-Weg 12", "/img/loca4.jpg"),
     new restaurants("Dome Wirt", "Wien", 1010, "Dome Weg 2", "/img/rest4.jpg", "+43 645 56 56", "Wirt", "www.wirt1.at"),
     new restaurants("Stagl", "Wiener Neustadt", 2900, "Grazerstraße 5", "/img/rest2.png", "+43 235 23 34", "Chinese", "www.wirt2.at"),
     new restaurants("Tahler", "Bromberg", 2700, "Wiener Weg 6", "/img/rest3.jpg", "+43 646 45 45", "Wirt", "www.wirt3.at"),
@@ -82,10 +82,10 @@ var filterEven = function (obj) {
 var list = ["Locations", "Restaurants", "Events"];
 list.forEach(function (item) {
     var filteredList;
-    if (item === "Location") {
+    if (item === "Locations") {
         filteredList = data.filter(filterLoca);
     }
-    else if (item === "Restaurantes") {
+    else if (item === "Restaurants") {
         filteredList = data.filter(filterRest);
     }
     else {
