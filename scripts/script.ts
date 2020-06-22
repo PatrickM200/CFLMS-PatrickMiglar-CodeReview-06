@@ -81,9 +81,9 @@ class restaurants extends locations {
         <p><b>ZIP-Code:</b> ${this.zipcode}</p>
         <p><b>Address:</b> ${this.address}</p>
         <hr>
-        <p><b>Time:</b> ${this.telefon}</p>
-        <p><b>Date:</b> ${this.art}</p>
-        <p><b>Date:</b> ${this.website}</p>
+        <p><b>Telefon:</b> ${this.telefon}</p>
+        <p><b>Type:</b> ${this.art}</p>
+        <p><b>Web:</b> ${this.website}</p>
     	  <hr>
   		</div>
 		</div>
@@ -138,28 +138,28 @@ const data: destinations[] = [
     "Wien im Zentrum",
     1010,
     "Domstraße 16",
-    "/img/loca1.jpg"
+    "img/loca1.jpg"
   ),
   new locations(
     "Nightlife",
     "Wiener Neustadt",
     2700,
     "Granzer Straße 10",
-    "/img/loca2.jpg"
+    "img/loca2.jpg"
   ),
   new locations(
     "Metalbar",
     "Bromberg",
     2540,
     "Wiener Straße 2",
-    "/img/loca3.jpg"
+    "img/loca3.jpg"
   ),
   new locations(
     "Brotherhood",
     "Rust am See",
     2310,
     "der-lange-Weg 12",
-    "/img/loca4.jpg"
+    "img/loca4.jpg"
   ),
 
   new restaurants(
@@ -167,7 +167,7 @@ const data: destinations[] = [
     "Wien",
     1010,
     "Dome Weg 2",
-    "/img/rest4.jpg",
+    "img/rest4.jpg",
     "+43 645 56 56",
     "Wirt",
     "www.wirt1.at"
@@ -177,7 +177,7 @@ const data: destinations[] = [
     "Wiener Neustadt",
     2900,
     "Grazerstraße 5",
-    "/img/rest2.png",
+    "img/rest2.png",
     "+43 235 23 34",
     "Chinese",
     "www.wirt2.at"
@@ -187,7 +187,7 @@ const data: destinations[] = [
     "Bromberg",
     2700,
     "Wiener Weg 6",
-    "/img/rest3.jpg",
+    "img/rest3.jpg",
     "+43 646 45 45",
     "Wirt",
     "www.wirt3.at"
@@ -197,7 +197,7 @@ const data: destinations[] = [
     "Wiener Neustadt",
     2350,
     "Wiener Straße 12",
-    "/img/rest4.jpg",
+    "img/rest4.jpg",
     "+43 34 23 64",
     "Kaffeehaus",
     "www.wirt4.at"
@@ -208,7 +208,7 @@ const data: destinations[] = [
     "Österreich",
     2800,
     "Burgenland 1",
-    "/img/event1.jpg",
+    "img/event1.jpg",
     "10:00:00",
     "28.09.2021"
   ),
@@ -217,7 +217,7 @@ const data: destinations[] = [
     "Deutschland",
     23562,
     "Kempten 2",
-    "/img/event2.jpg",
+    "img/event2.jpg",
     "09:00:00",
     "23.10.2021"
   ),
@@ -226,7 +226,7 @@ const data: destinations[] = [
     "Deutschland",
     28141,
     "Berlin 3",
-    "/img/event3.jpg",
+    "img/event3.jpg",
     "08:00:00",
     "03.05.2021"
   ),
@@ -235,7 +235,7 @@ const data: destinations[] = [
     "Ungarn",
     29811,
     "Sopron 4",
-    "/img/event4.jpg",
+    "img/event4.jpg",
     "17:00:00",
     "06.06.2021"
   ),
