@@ -8,7 +8,7 @@ class locations implements destinations {
   protected zipcode: number;
   protected address: string;
   protected image: any;
-  protected dates: any;
+  protected dates: Date;
 
   constructor(
     name: string,
@@ -16,7 +16,7 @@ class locations implements destinations {
     zipcode: number,
     address: string,
     image: any,
-    dates: any,
+    dates: Date
   ) {
     this.name = name;
     this.city = city;
@@ -25,6 +25,7 @@ class locations implements destinations {
     this.image = image;
     this.dates = dates;
   }
+
   //------------HTML INPUT---------//
   render() {
     return `
@@ -42,7 +43,7 @@ class locations implements destinations {
         <p><b>City:</b> ${this.city}</p>
         <p><b>ZIP-Code:</b> ${this.zipcode}</p>
         <p><b>Address:</b> ${this.address}</p>
-        <p><b>Create:</b> ${this.dates.toLocaleString('de-AT')}</p>
+        <p><b>Create:</b> ${this.dates.toLocaleString("de-AT")}</p>
     	  <hr>
   		</div>
 		</div>
@@ -63,7 +64,7 @@ class restaurants extends locations {
     telefon: string,
     art: string,
     website: string,
-    dates: any,
+    dates: any
   ) {
     super(name, city, zipcode, address, image, dates);
     this.telefon = telefon;
@@ -89,7 +90,7 @@ class restaurants extends locations {
         <p><b>Telefon:</b> ${this.telefon}</p>
         <p><b>Type:</b> ${this.art}</p>
         <p><b>Web:</b> ${this.website}</p>
-        <p><b>Create:</b> ${this.dates.toLocaleString('de-AT')}</p>
+        <p><b>Create:</b> ${this.dates.toLocaleString("de-AT")}</p>
     	  <hr>
   		</div>
 		</div>
@@ -108,7 +109,7 @@ class events extends locations {
     image: any,
     time: string,
     date: string,
-    dates: any,
+    dates: any
   ) {
     super(name, city, zipcode, address, image, dates);
     this.time = time;
@@ -137,6 +138,50 @@ class events extends locations {
   		</div>
 		</div>
 		`;
+  }
+}
+class app {
+  // -------------FILTER---------------//
+  filterRest(obj: destinations) {
+    return obj instanceof restaurants;
+  }
+
+  filterLoca(obj: destinations) {
+    return (
+      obj instanceof locations &&
+      obj instanceof restaurants === false &&
+      obj instanceof events === false
+    );
+  }
+
+  filterEven(obj: destinations) {
+    return obj instanceof events;
+  }
+
+  sortByDate(a, b) {
+    if (a.dates < b.dates) return 1;
+    else if (a.dates > b.dates) return -1;
+    else return 0;
+  }
+
+  render(data: destinations[]) {
+    const list = ["Locations", "Restaurants", "Events"];
+    document.querySelector("main").innerHTML ="";
+    list.forEach((item) => {
+      let filteredList: destinations[];
+      if (item === "Locations") {
+        filteredList = data.filter(this.filterLoca);
+      } else if (item === "Restaurants") {
+        filteredList = data.filter(this.filterRest);
+      } else {
+        filteredList = data.filter(this.filterEven);
+      }
+      let text = `<div class="mainTitle col-12 bg-dark text-light m-2 h3 text-center">${item}</div>`;
+      filteredList.forEach((filteredListItem) => {
+        text += filteredListItem.render();
+      });
+      document.querySelector("main").innerHTML += text;
+    });
   }
 }
 //-----------DATA INPUT------------//
@@ -247,7 +292,7 @@ const data: destinations[] = [
     "img/event3.jpg",
     "08:00:00",
     "03.05.2003",
-    new Date(2013, 4, 6, 25),
+    new Date(2013, 4, 6, 25)
   ),
   new events(
     "Ozora",
@@ -257,37 +302,13 @@ const data: destinations[] = [
     "img/event4.jpg",
     "17:00:00",
     "06.06.2001",
-    new Date(2012, 5, 2, 40),
+    new Date(2012, 5, 2, 40)
   ),
 ];
-// -------------FILTER---------------//
-let filterRest = (obj: destinations) => {
-  return obj instanceof restaurants;
-};
-let filterLoca = (obj: destinations) => {
-  return (
-    obj instanceof locations &&
-    obj instanceof restaurants === false &&
-    obj instanceof events === false
-  );
-};
-let filterEven = (obj: destinations) => {
-  return obj instanceof events;
-};
+const instance = new app();
+  instance.render(data);
 
-const list = ["Locations", "Restaurants", "Events"];
-list.forEach((item) => {
-  let filteredList: destinations[];
-  if (item === "Locations") {
-    filteredList = data.filter(filterLoca);
-  } else if (item === "Restaurants") {
-    filteredList = data.filter(filterRest);
-  } else {
-    filteredList = data.filter(filterEven);
-  }
-  let text = `<div class="mainTitle col-12 bg-dark text-light m-2 h3 text-center">${item}</div>`;
-  filteredList.forEach((filteredListItem) => {
-    text += filteredListItem.render();
-  });
-  document.querySelector("main").innerHTML += text;
-});
+  document.querySelector(`#sort`).addEventListener("click", (event) =>{
+    data.sort(instance.sortByDate);
+    instance.render(data);
+  })

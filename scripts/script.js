@@ -22,7 +22,7 @@ var locations = /** @class */ (function () {
     }
     //------------HTML INPUT---------//
     locations.prototype.render = function () {
-        return "\n        \n\t\t<div class=\"bg-secondary col-lg-3 col-md-6 col-sm-12\">\n  \t\t<div class=\"content\">\n  \t\t<hr>\n    \t<a href=\"#\">\n      \t<img class=\"d-none d-md-block\" src=\"" + this.image + "\">\n    \t</a>\n    \t<hr>\n  \t\t</div>\n  \t\t<div class=\"contetText col-lg-12 col-md-1 col-sm-12\">\n        <h4 class=\"contentTitle\">" + this.name + "</h4>\n        <p><b>City:</b> " + this.city + "</p>\n        <p><b>ZIP-Code:</b> " + this.zipcode + "</p>\n        <p><b>Address:</b> " + this.address + "</p>\n        <p><b>Create:</b> " + this.dates.toLocaleString('de-AT') + "</p>\n    \t  <hr>\n  \t\t</div>\n\t\t</div>\n\t\t";
+        return "\n        \n\t\t<div class=\"bg-secondary col-lg-3 col-md-6 col-sm-12\">\n  \t\t<div class=\"content\">\n  \t\t<hr>\n    \t<a href=\"#\">\n      \t<img class=\"d-none d-md-block\" src=\"" + this.image + "\">\n    \t</a>\n    \t<hr>\n  \t\t</div>\n  \t\t<div class=\"contetText col-lg-12 col-md-1 col-sm-12\">\n        <h4 class=\"contentTitle\">" + this.name + "</h4>\n        <p><b>City:</b> " + this.city + "</p>\n        <p><b>ZIP-Code:</b> " + this.zipcode + "</p>\n        <p><b>Address:</b> " + this.address + "</p>\n        <p><b>Create:</b> " + this.dates.toLocaleString("de-AT") + "</p>\n    \t  <hr>\n  \t\t</div>\n\t\t</div>\n\t\t";
     };
     return locations;
 }());
@@ -36,7 +36,7 @@ var restaurants = /** @class */ (function (_super) {
         return _this;
     }
     restaurants.prototype.render = function () {
-        return "\n\t\t<div class=\"bg-secondary col-lg-3 col-md-6 col-sm-12\">\n  \t\t<div class=\"content\">\n  \t\t<hr>\n    \t<a href=\"#\">\n      \t<img class=\"d-none d-md-block\" src=\"" + this.image + "\">\n    \t</a>\n    \t<hr>\n  \t\t</div>\n  \t\t<div class=\"contetText col-lg-12 col-md-1 col-sm-12\">\n        <h4 class=\"contentTitle\">" + this.name + "</h4>\n        <p><b>City:</b> " + this.city + "</p>\n        <p><b>ZIP-Code:</b> " + this.zipcode + "</p>\n        <p><b>Address:</b> " + this.address + "</p>\n        <hr>\n        <p><b>Telefon:</b> " + this.telefon + "</p>\n        <p><b>Type:</b> " + this.art + "</p>\n        <p><b>Web:</b> " + this.website + "</p>\n        <p><b>Create:</b> " + this.dates.toLocaleString('de-AT') + "</p>\n    \t  <hr>\n  \t\t</div>\n\t\t</div>\n\t\t";
+        return "\n\t\t<div class=\"bg-secondary col-lg-3 col-md-6 col-sm-12\">\n  \t\t<div class=\"content\">\n  \t\t<hr>\n    \t<a href=\"#\">\n      \t<img class=\"d-none d-md-block\" src=\"" + this.image + "\">\n    \t</a>\n    \t<hr>\n  \t\t</div>\n  \t\t<div class=\"contetText col-lg-12 col-md-1 col-sm-12\">\n        <h4 class=\"contentTitle\">" + this.name + "</h4>\n        <p><b>City:</b> " + this.city + "</p>\n        <p><b>ZIP-Code:</b> " + this.zipcode + "</p>\n        <p><b>Address:</b> " + this.address + "</p>\n        <hr>\n        <p><b>Telefon:</b> " + this.telefon + "</p>\n        <p><b>Type:</b> " + this.art + "</p>\n        <p><b>Web:</b> " + this.website + "</p>\n        <p><b>Create:</b> " + this.dates.toLocaleString("de-AT") + "</p>\n    \t  <hr>\n  \t\t</div>\n\t\t</div>\n\t\t";
     };
     return restaurants;
 }(locations));
@@ -53,6 +53,53 @@ var events = /** @class */ (function (_super) {
     };
     return events;
 }(locations));
+var app = /** @class */ (function () {
+    function app() {
+    }
+    // -------------FILTER---------------//
+    app.prototype.filterRest = function (obj) {
+        return obj instanceof restaurants;
+    };
+    app.prototype.filterLoca = function (obj) {
+        return (obj instanceof locations &&
+            obj instanceof restaurants === false &&
+            obj instanceof events === false);
+    };
+    app.prototype.filterEven = function (obj) {
+        return obj instanceof events;
+    };
+    app.prototype.sortByDate = function (a, b) {
+        if (a.dates < b.dates)
+            return 1;
+        else if (a.dates > b.dates)
+            return -1;
+        else
+            return 0;
+    };
+    app.prototype.render = function (data) {
+        var _this = this;
+        var list = ["Locations", "Restaurants", "Events"];
+        document.querySelector("main").innerHTML = "";
+        list.forEach(function (item) {
+            var filteredList;
+            if (item === "Locations") {
+                filteredList = data.filter(_this.filterLoca);
+            }
+            else if (item === "Restaurants") {
+                filteredList = data.filter(_this.filterRest);
+            }
+            else {
+                filteredList = data.filter(_this.filterEven);
+            }
+            var text = "<div class=\"mainTitle col-12 bg-dark text-light m-2 h3 text-center\">" + item + "</div>";
+            filteredList.forEach(function (filteredListItem) {
+                text += filteredListItem.render();
+            });
+            document.querySelector("main").innerHTML += text;
+        });
+    };
+    return app;
+}());
 //-----------DATA INPUT------------//
 var data = [
     new locations("Dome Disco", "Wien im Zentrum", 1010, "Domstraße 16", "img/loca1.jpg", new Date(2008, 1, 2, 50, 45)),
@@ -68,33 +115,9 @@ var data = [
     new events("Wacken", "Deutschland", 28141, "Berlin 3", "img/event3.jpg", "08:00:00", "03.05.2003", new Date(2013, 4, 6, 25)),
     new events("Ozora", "Ungarn", 29811, "Sopron 4", "img/event4.jpg", "17:00:00", "06.06.2001", new Date(2012, 5, 2, 40)),
 ];
-// -------------FILTER---------------//
-var filterRest = function (obj) {
-    return obj instanceof restaurants;
-};
-var filterLoca = function (obj) {
-    return (obj instanceof locations &&
-        obj instanceof restaurants === false &&
-        obj instanceof events === false);
-};
-var filterEven = function (obj) {
-    return obj instanceof events;
-};
-var list = ["Locations", "Restaurants", "Events"];
-list.forEach(function (item) {
-    var filteredList;
-    if (item === "Locations") {
-        filteredList = data.filter(filterLoca);
-    }
-    else if (item === "Restaurants") {
-        filteredList = data.filter(filterRest);
-    }
-    else {
-        filteredList = data.filter(filterEven);
-    }
-    var text = "<div class=\"mainTitle col-12 bg-dark text-light m-2 h3 text-center\">" + item + "</div>";
-    filteredList.forEach(function (filteredListItem) {
-        text += filteredListItem.render();
-    });
-    document.querySelector("main").innerHTML += text;
+var instance = new app();
+instance.render(data);
+document.querySelector("#sort").addEventListener("click", function (event) {
+    data.sort(instance.sortByDate);
+    instance.render(data);
 });
